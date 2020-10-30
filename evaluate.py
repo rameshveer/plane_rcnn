@@ -593,7 +593,7 @@ def evaluate(options):
                 pass
 
             if sampleIndex < 30 or options.debug or options.dataset != '':
-                visualizeBatchPair(options, config, input_pair, detection_pair, indexOffset=sampleIndex % 500, suffix='_' + name + options.modelType, write_ply=options.testingIndex >= 0, write_new_view=options.testingIndex >= 0 and 'occlusion' in options.suffix)
+                visualizeBatchPair(options, config, input_pair, detection_pair, indexOffset=sampleIndex % 4000, suffix='_' + name + options.modelType, write_ply=options.testingIndex >= 0, write_new_view=options.testingIndex >= 0 and 'occlusion' in options.suffix)
                 pass
             if sampleIndex >= options.numTestingImages:
                 break

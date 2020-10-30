@@ -194,7 +194,7 @@ def visualizeBatchDetection(options, config, input_dict, detection_dict, indexOf
     if 'depth' in input_dict:
         depths = input_dict['depth'].detach().cpu().numpy()
         depth_gt = depths[0]
-        cv2.imwrite(options.test_dir + '/' + str(indexOffset) + '_depth' + suffix + '.png', drawDepthImage(depth_gt[80:560]))
+        #rv cv2.imwrite(options.test_dir + '/' + str(indexOffset) + '_depth' + suffix + '.png', drawDepthImage(depth_gt[80:560]))
         pass
 
     windows = (0, 0, images.shape[1], images.shape[2])
@@ -372,7 +372,7 @@ def visualizeBatchDepth(options, config, input_dict, detection_dict, indexOffset
 
     depths = input_dict['depth'].detach().cpu().numpy()
     for batchIndex, depth in enumerate(depths):
-        cv2.imwrite(options.test_dir + '/' + str(indexOffset + batchIndex) + '_depth' + suffix + '.png', drawDepthImage(depth))
+        #rv cv2.imwrite(options.test_dir + '/' + str(indexOffset + batchIndex) + '_depth' + suffix + '.png', drawDepthImage(depth))
         continue
 
     if 'depth_np' in detection_dict:
@@ -389,7 +389,7 @@ def visualizeBatchSingle(options, config, images, image_metas, rpn_rois, depths,
     cv2.imwrite(options.test_dir + '/' + str(indexOffset) + '_image' + suffix + '.png', image)
 
     depth = depths[0]
-    cv2.imwrite(options.test_dir + '/' + str(indexOffset) + '_depth' + suffix + '.png', drawDepthImage(depth))
+    #rv cv2.imwrite(options.test_dir + '/' + str(indexOffset) + '_depth' + suffix + '.png', drawDepthImage(depth))
 
     windows = (0, 0, images.shape[1], images.shape[2])
     class_colors = ColorPalette(config.NUM_CLASSES).getColorMap(returnTuples=True)
