@@ -479,7 +479,7 @@ def evaluate(options):
         camera[5] = 480
         dataset = InferenceDataset(options, config, image_list=image_list, camera=camera)
     elif 'inference' in options.dataset:
-        image_list = glob.glob(options.customDataFolder + '/*.png') + glob.glob(options.customDataFolder + '/*.jpg')
+        image_list = glob.glob(options.customDataFolder + '/*.png') + glob.glob(options.customDataFolder + '/*.jpg') + + glob.glob(options.customDataFolder + '/*.jpeg')
         if os.path.exists(options.customDataFolder + '/camera.txt'):
             camera = np.zeros(6)
             with open(options.customDataFolder + '/camera.txt', 'r') as f:
@@ -491,7 +491,7 @@ def evaluate(options):
                     break
                 pass
         else:
-            camera = [filename.replace('.png', '.txt').replace('.jpg', '.txt') for filename in image_list]
+            camera = [filename.replace('.png', '.txt').replace('.jpg', '.txt').replace('.jpeg', '.txt') for filename in image_list]
             pass
         dataset = InferenceDataset(options, config, image_list=image_list, camera=camera)
         pass
@@ -577,7 +577,7 @@ def evaluate(options):
                 os.system('rm ' + image_list[sampleIndex].replace('color', 'depth'))
                 depth_rounded = np.round(depth * 256)
                 depth_rounded[np.logical_or(depth_rounded < 0, depth_rounded >= 256 * 256)] = 0
-                cv2.imwrite(image_list[sampleIndex].replace('color', 'depth').replace('jpg', 'png'), depth_rounded.astype(np.uint16))
+                cv2.imwrite(image_list[sampleIndex].replace('color', 'depth').replace('jpg', 'jpeg', 'png'), depth_rounded.astype(np.uint16))
                 continue
 
 
